@@ -17,8 +17,10 @@ const API_CONFIG = {
 
 @Injectable()
 export class RecipeService {
-    constructor(
-        @InjectModel(Recipe)
-        private recipeModel,
-    ) {}
+    apiKey;
+    baseURL;
+    constructor(){
+        this.apiKey = API_CONFIG.SPOONACULAR.API_KEY;
+        
+    }
 }
