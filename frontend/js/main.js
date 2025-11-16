@@ -3,7 +3,6 @@ const resources = [
     id: "pokemon",
     title: "Pokémon",
     description: "Información de Pokémon",
-    endpoint: "https://pokeapi.co/api/v2/pokemon",
     icon: "🦖",
     page: "pages/pokemon.html",
   },
@@ -11,25 +10,15 @@ const resources = [
     id: "recipes",
     title: "Recetas",
     description: "Recetas de cocina deliciosas",
-    endpoint: "https://api.spoonacular.com/recipes",
     icon: "🍳",
     page: "pages/recipes.html",
   },
   {
-    id: "weather",
-    title: "Clima",
-    description: "Pronóstico del tiempo",
-    endpoint: "https://api.openweathermap.org/data/2.5",
-    icon: "🌤️",
-    page: "pages/weather.html",
-  },
-  {
-    id: "crypto",
-    title: "Criptomonedas",
-    description: "Información sobre criptomonedas",
-    endpoint: "https://api.coingecko.com/api/v3/coins/markets",
-    icon: "🪙",
-    page: "pages/crypto.html",
+    id: "games",
+    title: "Videojuegos",
+    description: "Información sobre videojeugos",
+    icon: "🎮",
+    page: "pages/games.html",
   },
 ];
 
@@ -82,11 +71,6 @@ function createCards() {
       <p class="text-purple-200 leading-relaxed mb-6">
         ${resource.description}
       </p>
-      
-      <div class="inline-flex items-center px-3 py-1 bg-green-500/20 border border-green-500/30 rounded-full">
-        <div class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-        <span class="text-green-300 text-sm font-medium">API Activa</span>
-      </div>
     </div>
     
     <div class="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

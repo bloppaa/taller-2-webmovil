@@ -43,5 +43,16 @@ for i in range(1, 11):
             ),
         )
 
+cur.execute(
+    """
+    DELETE FROM recipes
+    WHERE id NOT IN (
+        SELECT MIN(id)
+        FROM recipes
+        GROUP BY title
+    );
+"""
+)
+
 conn.commit()
 conn.close()
