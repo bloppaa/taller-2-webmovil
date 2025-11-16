@@ -15,7 +15,8 @@ cur.execute(
         rating_top INTEGER,
         metacritic INTEGER,
         platforms TEXT,
-        genres TEXT
+        genres TEXT,
+        image TEXT
     )
     """
 )

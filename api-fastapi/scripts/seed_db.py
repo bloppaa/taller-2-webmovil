@@ -17,13 +17,14 @@ for i in range(1, 26):
             [p["platform"]["name"] for p in game.get("parent_platforms", [])]
         )
         genres = ",".join([g["name"] for g in game.get("genres", [])])
+        image = game.get("short_screenshots", [])[0].get("image", "")
 
         cur.execute(
             """
-            INSERT INTO games (slug, name, released, rating_top, metacritic, platforms, genres)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO games (slug, name, released, rating_top, metacritic, platforms, genres, image)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """,
-            (slug, name, released, rating_top, metacritic, platforms, genres),
+            (slug, name, released, rating_top, metacritic, platforms, genres, image),
         )
 
 conn.commit()
