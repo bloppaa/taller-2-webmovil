@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect("api-fastapi/games.db")
+conn = sqlite3.connect("games.db")
 cur = conn.cursor()
 
 cur.execute("DROP TABLE IF EXISTS games")
@@ -15,7 +15,8 @@ cur.execute(
         rating_top INTEGER,
         metacritic INTEGER,
         platforms TEXT,
-        genres TEXT
+        genres TEXT,
+        image TEXT
     )
     """
 )

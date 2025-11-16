@@ -19,14 +19,15 @@ for i in range(1, 11):
             ing["original"] for ing in recipe.get("extendedIngredients", [])
         )
         instructions = recipe.get("instructions", "")
+        image = recipe.get("image", "")
 
         cur.execute(
             """
             INSERT INTO recipes (
                 title, readyInMinutes, servings, dishTypes,
                 pricePerServing, spoonacularScore, summary,
-                ingredients, instructions
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ingredients, instructions, image
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 title,
@@ -38,6 +39,7 @@ for i in range(1, 11):
                 summary,
                 ingredients,
                 instructions,
+                image,
             ),
         )
 

@@ -17,7 +17,8 @@ cur.execute(
         spoonacularScore REAL,
         summary TEXT,
         ingredients TEXT,
-        instructions TEXT
+        instructions TEXT,
+        image TEXT
     )
     """
 )

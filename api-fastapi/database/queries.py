@@ -2,7 +2,7 @@ import sqlite3
 
 
 def fetch_games(search=None, orderby=None, limit=20):
-    conn = sqlite3.connect("api-fastapi/games.db")
+    conn = sqlite3.connect("games.db")
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
