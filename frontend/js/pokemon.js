@@ -78,20 +78,18 @@ async function fetchSearchPokemon(query) {
 
 async function fetchReversePokemon() {
   try {
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon?limit=${TOTAL_POKEMON_REAL}`
-    );
+    const response = await fetch(`${API_URL}?limit=${TOTAL_POKEMON_REAL}`);
     const data = await response.json();
-    const reversedResults = data.results
+    const reversedResults = data.data
       .slice(
         TOTAL_POKEMON_REAL - LIMIT * (currentPage + 1),
         TOTAL_POKEMON_REAL - LIMIT * currentPage
       )
       .reverse();
-    const pokemonDetails = await Promise.all(
-      reversedResults.map((pokemon) => getPokemonDetails(pokemon.url))
-    );
-    return pokemonDetails;
+    reversedResults.forEach((pokemon) => {
+      pokemon.name = formatPokemonName(pokemon.name);
+    });
+    return reversedResults;
   } catch (error) {
     console.error("Error fetching reverse Pokémon:", error);
   }
@@ -100,7 +98,6 @@ async function fetchReversePokemon() {
 async function fetchPokemon(limit = LIMIT, offset = 0) {
   try {
     const response = await fetch(`${API_URL}?limit=${limit}&offset=${offset}`);
-    console.log(response);
     const data = await response.json();
     data.data.forEach((pokemon) => {
       pokemon.name = formatPokemonName(pokemon.name);
