@@ -28,4 +28,11 @@ export class RecipesService {
     const stmt = this.db.prepare(query);
     return stmt.all(...params);
   }
+
+  fetchRecipeById(id: string): any {
+    const query = 'SELECT * FROM recipes WHERE id = ?';
+    const stmt = this.db.prepare(query);
+    const recipe = stmt.get(id);
+    return recipe;
+  }
 }

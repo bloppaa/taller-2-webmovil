@@ -1,12 +1,6 @@
 const API_CONFIG = {
   SPOONACULAR: {
-    BASE_URL: "https://api.spoonacular.com/recipes",
-    API_KEY: "8d5e4dc7284c49c485626b5c0a05c73b",
-    ENDPOINTS: {
-      RANDOM: "/random",
-      SEARCH: "/complexSearch",
-      DETAIL: "/information",
-    },
+    BASE_URL: "http://127.0.0.1:3000/recipes",
   },
 };
 
@@ -16,11 +10,9 @@ class RecipesAPI {
     this.baseURL = API_CONFIG.SPOONACULAR.BASE_URL;
   }
 
-  async getRandomRecipes(number = 6) {
+  async getRandomRecipes(limit = 6) {
     try {
-      const response = await fetch(
-        `${this.baseURL}${API_CONFIG.SPOONACULAR.ENDPOINTS.RANDOM}?number=${number}&apiKey=${this.apiKey}`
-      );
+      const response = await fetch(`${this.baseURL}?limit=${limit}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -34,14 +26,12 @@ class RecipesAPI {
     }
   }
 
-  async searchRecipes(query, number = 12) {
+  async searchRecipes(query, limit = 12) {
     try {
       const response = await fetch(
         `${this.baseURL}${
           API_CONFIG.SPOONACULAR.ENDPOINTS.SEARCH
-        }?query=${encodeURIComponent(query)}&number=${number}&apiKey=${
-          this.apiKey
-        }&addRecipeInformation=true`
+        }?search=${encodeURIComponent(query)}&limit=${limit}`
       );
 
       if (!response.ok) {
@@ -58,9 +48,7 @@ class RecipesAPI {
 
   async getRecipeDetails(id) {
     try {
-      const response = await fetch(
-        `${this.baseURL}/${id}${API_CONFIG.SPOONACULAR.ENDPOINTS.DETAIL}?apiKey=${this.apiKey}&includeNutrition=true`
-      );
+      const response = await fetch(`${this.baseURL}/${id}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

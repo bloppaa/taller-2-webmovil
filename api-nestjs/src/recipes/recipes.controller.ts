@@ -1,4 +1,10 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  NotFoundException,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { RecipesService } from './recipes.service';
 
 @Controller('recipes')
@@ -14,5 +20,14 @@ export class RecipesController {
     return {
       recipes: this.recipesService.fetchRecipes(search, orderby, limit),
     };
+  }
+
+  @Get(':id')
+  fetchRecipeById(@Param('id') id: string) {
+    const recipe = this.recipesService.fetchRecipeById(id);
+    if (!recipe) {
+      throw new NotFoundException(`Recipe with ID ${id} not found`);
+    }
+    return recipe;
   }
 }
