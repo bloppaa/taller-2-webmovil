@@ -202,9 +202,7 @@ async function searchPokemon() {
 
   try {
     if (isValidPokemonNumber(query)) {
-      const pokemon = await getPokemonDetails(
-        `https://pokeapi.co/api/v2/pokemon/${Number(query)}`
-      );
+      const pokemon = await getPokemonDetails(`${API_URL}/${Number(query)}`);
       filteredPokemon = [pokemon];
     } else {
       const pokemon = await fetchSearchPokemon(query);
@@ -289,9 +287,16 @@ async function loadRandomPokemon() {
 
   const pokemonDetails = await Promise.all(
     randomNumbers.map((num) =>
-      getPokemonDetails(`https://pokeapi.co/api/v2/pokemon/${num}`)
+      fetch(`${API_URL}/${num}`)
+        .then((res) => res.json())
+        .then((data) => data.data)
     )
   );
+
+  pokemonDetails.forEach((pokemon) => {
+    pokemon.name = formatPokemonName(pokemon.name);
+  });
+
   document.getElementById("loading-spinner").classList.add("hidden");
   filteredPokemon = [];
   displayPokemon(pokemonDetails);
