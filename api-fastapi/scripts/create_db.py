@@ -3,19 +3,19 @@ import sqlite3
 conn = sqlite3.connect("api-fastapi/games.db")
 cur = conn.cursor()
 
-cur.execute("drop table if exists games")
+cur.execute("DROP TABLE IF EXISTS games")
 
 cur.execute(
     """
-    create table games (
-        id integer primary key,
-        slug text,
-        name text,
-        released text,
-        rating_top integer,
-        metacritic integer,
-        platforms text,
-        genres text
+    CREATE TABLE games (
+        id INTEGER PRIMARY KEY,
+        slug TEXT,
+        name TEXT,
+        released TEXT,
+        rating_top INTEGER,
+        metacritic INTEGER,
+        platforms TEXT,
+        genres TEXT
     )
     """
 )

@@ -20,8 +20,8 @@ for i in range(1, 26):
 
         cur.execute(
             """
-            insert into games (slug, name, released, rating_top, metacritic, platforms, genres)
-            values (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO games (slug, name, released, rating_top, metacritic, platforms, genres)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
             """,
             (slug, name, released, rating_top, metacritic, platforms, genres),
         )
