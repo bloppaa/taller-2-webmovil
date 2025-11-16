@@ -14,11 +14,17 @@ export class RecipesController {
   @Get()
   fetchRecipes(
     @Query('search') search?: string,
-    @Query('orderby') orderby?: string,
     @Query('limit') limit?: number,
   ) {
     return {
-      recipes: this.recipesService.fetchRecipes(search, orderby, limit),
+      recipes: this.recipesService.fetchRecipes(search, limit),
+    };
+  }
+
+  @Get('random')
+  fetchRandomRecipes(@Query('limit') limit?: number) {
+    return {
+      recipes: this.recipesService.fetchRandomRecipes(limit),
     };
   }
 

@@ -140,7 +140,7 @@
 
         showLoading();
         try {
-          const recipes = await recipesAPI.searchRecipes(query, 12);
+          const recipes = await recipesAPI.searchRecipes(query);
           displayRecipes(recipes);
           hideLoading();
         } catch (error) {
@@ -251,16 +251,16 @@
                     }
 
                     ${
-                      recipe.extendedIngredients &&
-                      recipe.extendedIngredients.length > 0
+                      recipe.ingredients
                         ? `
                         <div class="mb-4">
                             <h4 class="font-bold mb-2">Ingredientes:</h4>
                             <ul class="list-disc list-inside space-y-1">
-                                ${recipe.extendedIngredients
+                                ${recipe.ingredients
+                                  .split("@")
                                   .map(
                                     (ing) => `
-                                    <li class="text-gray-700">${ing.original}</li>
+                                    <li class="text-gray-700">${ing}</li>
                                 `
                                   )
                                   .join("")}
@@ -286,10 +286,6 @@
                                 class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition">
                             Cerrar
                         </button>
-                        <a href="${recipe.sourceUrl}" target="_blank" 
-                           class="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded transition">
-                            Ver receta completa
-                        </a>
                     </div>
                 `;
 

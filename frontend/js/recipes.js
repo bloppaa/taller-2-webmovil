@@ -12,7 +12,7 @@ class RecipesAPI {
 
   async getRandomRecipes(limit = 6) {
     try {
-      const response = await fetch(`${this.baseURL}?limit=${limit}`);
+      const response = await fetch(`${this.baseURL}/random?limit=${limit}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -29,9 +29,7 @@ class RecipesAPI {
   async searchRecipes(query, limit = 12) {
     try {
       const response = await fetch(
-        `${this.baseURL}${
-          API_CONFIG.SPOONACULAR.ENDPOINTS.SEARCH
-        }?search=${encodeURIComponent(query)}&limit=${limit}`
+        `${this.baseURL}?search=${encodeURIComponent(query)}&limit=${limit}`
       );
 
       if (!response.ok) {
@@ -39,7 +37,8 @@ class RecipesAPI {
       }
 
       const data = await response.json();
-      return data.results;
+
+      return data.recipes;
     } catch (error) {
       console.error("Error searching recipes:", error);
       throw error;
