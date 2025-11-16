@@ -78,8 +78,12 @@ async function fetchSearchPokemon(query) {
 
 async function fetchReversePokemon() {
   try {
-    const response = await fetch(`${API_URL}?limit=${TOTAL_POKEMON_REAL}`);
-    const data = await response.json();
+    const response = await Promise.all(
+      Array.from({ length: LIMIT }, (_, i) => {
+        const id = TOTAL_POKEMON_REAL - (currentPage * LIMIT + i);
+        return fetch(`${API_URL}/${id}`).then((res) => res.json());
+      })
+    );
     const reversedResults = data.data
       .slice(
         TOTAL_POKEMON_REAL - LIMIT * (currentPage + 1),
