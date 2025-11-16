@@ -1,11 +1,11 @@
 import sqlite3
 import json
 
-conn = sqlite3.connect("api-fastapi/games.db")
+conn = sqlite3.connect("games.db")
 cur = conn.cursor()
 
 for i in range(1, 26):
-    with open(f"api-fastapi/data/page_{i}.json", "r", encoding="utf-8") as f:
+    with open(f"data/page_{i}.json", "r", encoding="utf-8") as f:
         data = json.load(f)
     for game in data["results"]:
         slug = game.get("slug", "")
