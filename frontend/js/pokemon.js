@@ -202,7 +202,9 @@ async function searchPokemon() {
 
   try {
     if (isValidPokemonNumber(query)) {
-      const pokemon = await getPokemonDetails(`${API_URL}/${Number(query)}`);
+      const pokemon = await fetch(`${API_URL}/${Number(query)}`)
+        .then((res) => res.json())
+        .then((data) => data.data);
       filteredPokemon = [pokemon];
     } else {
       const pokemon = await fetchSearchPokemon(query);
