@@ -30,21 +30,31 @@ function formatDate(dateString) {
   });
 }
 
+function showLoader() {
+  gamesContainer.innerHTML = "";
+  document.getElementById("loader-div").classList.remove("hidden");
+}
+
+function hideLoader() {
+  document.getElementById("loader-div").classList.add("hidden");
+}
+
 async function fetchGames(search = "", orderby = "") {
   const params = new URLSearchParams();
   if (search) params.append("search", search);
   if (orderby && orderby !== "relevance") params.append("orderby", orderby);
   params.append("limit", 20);
 
+  showLoader();
   const response = await fetch(
     `https://taller-2-webmovil.onrender.com/api/games?${params.toString()}`
   );
   const data = await response.json();
+  hideLoader();
   displayGames(data.games);
 }
 
 function displayGames(games) {
-  gamesContainer.innerHTML = "";
   games.forEach((game) => {
     const gameCard = document.createElement("div");
     gameCard.classList.add(
@@ -98,9 +108,19 @@ function displayGames(games) {
   });
 }
 
-searchInput.addEventListener("input", () => {
+function debounce(func, delay) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+const debouncedFetchGames = debounce(() => {
   fetchGames(searchInput.value, orderbySelect.value);
-});
+}, 500);
+
+searchInput.addEventListener("input", debouncedFetchGames);
 
 orderbySelect.addEventListener("change", () => {
   fetchGames(searchInput.value, orderbySelect.value);
