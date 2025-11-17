@@ -33,6 +33,10 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
+app.get("/", (req, res) => {
+  res.json("Hello World");
+});
+
 /**
  * @swagger
  * /api/pokemon:

@@ -6,7 +6,7 @@ export class RecipesService {
   private db: Database;
 
   constructor() {
-    this.db = new Database('recipes.db', { verbose: console.log });
+    this.db = new Database('recipes.db');
   }
 
   private fixImageExtension(recipe: any): any {

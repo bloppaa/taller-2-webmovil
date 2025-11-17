@@ -15,3 +15,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(games_router, prefix="/api")
+
+
+@app.get("/")
+def root():
+    return "Hello World"
