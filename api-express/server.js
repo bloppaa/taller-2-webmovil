@@ -1,5 +1,6 @@
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -12,6 +13,7 @@ const db = new sqlite3.Database("pokemon.db", (err) => {
   }
 });
 
+app.use(cors());
 app.use(express.json());
 
 app.get("/api/pokemon", (req, res) => {
@@ -53,6 +55,6 @@ app.get("/api/pokemon/:id", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
 });
