@@ -1,35 +1,12 @@
-<div style="position: absolute; top: 24px; right: 32px; z-index: 10">
-  <button
-    onclick="window.location.href='../index.html'"
-    style="
-      background: #f97316;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
-    "
-  >
-    ← Volver al inicio
-  </button>
-</div>
 <!DOCTYPE html>
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Pokémon</title>
-
     <link rel="stylesheet" href="../css/styles.css" />
-
     <link rel="stylesheet" href="../css/pokemon.css" />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -48,10 +25,10 @@
         <p class="pokemon-name pl-2 pt-2 text-lg font-semibold"></p>
         <div class="pl-2">
           <span
-            class="pokemon-type inline-block text-xs px-2 rounded-sm w-18 text-center"
+            class="pokemon-type inline-block text-xs px-2 rounded-sm w-14 text-center"
           ></span>
           <span
-            class="pokemon-type inline-block text-xs px-2 rounded-sm w-18 text-center"
+            class="pokemon-type inline-block text-xs px-2 rounded-sm w-14 text-center"
           ></span>
         </div>
       </a>
@@ -59,12 +36,20 @@
 
     <div class="flex justify-center">
       <div class="flex flex-col items-center max-w-3xl m-8 gap-6">
-        <div class="w-full text-3xl text-zinc-500 ml-4">Pokédex</div>
+        <div class="flex justify-between w-full px-8">
+          <div class="w-full text-3xl text-zinc-500">Pokédex</div>
+          <button
+            onclick="window.location.href='../index.html'"
+            class="text-white bg-orange-400 w-12 rounded-full aspect-square"
+          >
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+        </div>
 
         <div
           class="black-div bg-zinc-800 py-6 w-screen gap-4 flex flex-col justify-center items-center"
         >
-          <div class="search-div w-full h-24 px-12 flex flex-col gap-4">
+          <div class="search-div w-full h-24 px-8 flex flex-col gap-4">
             <div class="text-white text-2xl">Nombre o número</div>
 
             <div class="flex justify-between gap-2">
@@ -94,9 +79,7 @@
             </div>
           </div>
 
-          <div
-            class="search-info text-white bg-green-600 rounded-xl mx-4 p-4 text-xl"
-          >
+          <div class="search-info text-white bg-green-600 rounded-xl mx-8 p-4">
             Busca un Pokémon por su nombre o usando su número de la Pokédex
             Nacional.
           </div>
@@ -111,18 +94,17 @@
           </p>
         </div>
 
-        <div id="pokemon-controls" class="flex justify-evenly w-full">
+        <div id="pokemon-controls" class="flex justify-between w-full px-4">
           <button
             id="random-button"
-            class="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-6 py-2 rounded-md cursor-pointer transition-colors"
+            class="px-2 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-lg cursor-pointer transition-colors flex flex-col justify-center"
           >
             <i class="fa-solid fa-shuffle"></i>
-
             ¡Sorpréndeme!
           </button>
 
-          <div class="">
-            <label for="pokemon-order-select" class="font-semibold text-lg mr-2"
+          <div class="flex-0">
+            <label for="pokemon-order-select" class="font-semibold text-lg"
               >Ordenar por</label
             >
 

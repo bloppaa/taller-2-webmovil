@@ -37,7 +37,7 @@ async function fetchGames(search = "", orderby = "") {
   params.append("limit", 20);
 
   const response = await fetch(
-    `http://localhost:8000/api/games?${params.toString()}`
+    `https://taller-2-webmovil.onrender.com/api/games?${params.toString()}`
   );
   const data = await response.json();
   displayGames(data.games);

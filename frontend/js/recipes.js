@@ -1,6 +1,6 @@
 const API_CONFIG = {
   SPOONACULAR: {
-    BASE_URL: "http://127.0.0.1:3000/recipes",
+    BASE_URL: "https://taller-2-webmovil-nestjs.onrender.com/recipes",
   },
 };
 

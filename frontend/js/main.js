@@ -16,7 +16,7 @@ const resources = [
   {
     id: "games",
     title: "Videojuegos",
-    description: "Información sobre videojeugos",
+    description: "Información de videojeugos",
     icon: "🎮",
     page: "pages/games.html",
   },

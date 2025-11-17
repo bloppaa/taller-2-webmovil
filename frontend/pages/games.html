@@ -11,24 +11,22 @@
     />
   </head>
   <body class="bg-zinc-900 py-4 px-8">
-    <header
-      class="flex bg-zinc-900 text-white py-4 justify-between items-center"
-    >
-      <div class="flex gap-8">
+    <header class="bg-zinc-900 text-white py-4 items-center px-4">
+      <div class="flex justify-between mb-6">
         <h1 class="text-2xl font-bold">G A M E S</h1>
-        <input
-          type="text"
-          id="search"
-          placeholder="Search games"
-          class="bg-neutral-700 rounded-full py-2 px-4 text-gray-300"
-        />
+        <button
+          onclick="window.location.href='../index.html'"
+          class="bg-neutral-700 py-2 px-4 rounded-full aspect-square text-gray-300"
+        >
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
       </div>
-      <button
-        onclick="window.location.href='../index.html'"
-        class="bg-neutral-700 py-2 px-4 rounded-full text-gray-300"
-      >
-        ← Volver al inicio
-      </button>
+      <input
+        type="text"
+        id="search"
+        placeholder="Search games"
+        class="bg-neutral-700 rounded-full py-2 px-4 text-gray-300 w-full"
+      />
     </header>
 
     <div class="container mx-auto px-4 py-6">
