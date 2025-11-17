@@ -65,6 +65,7 @@ const whiteTextTypes = [
 ];
 
 async function fetchSearchPokemon(query) {
+  showLoader();
   try {
     const response = await fetch(
       `${API_URL}?search=${encodeURIComponent(query)}`
@@ -73,33 +74,38 @@ async function fetchSearchPokemon(query) {
     return data.data;
   } catch (error) {
     console.error("Error fetching search Pokémon:", error);
+  } finally {
+    hideLoader();
   }
 }
 
 async function fetchReversePokemon() {
+  showLoader();
   try {
-    const response = await Promise.all(
-      Array.from({ length: LIMIT }, (_, i) => {
-        const id = TOTAL_POKEMON_REAL - (currentPage * LIMIT + i);
-        return fetch(`${API_URL}/${id}`).then((res) => res.json());
-      })
-    );
-    const reversedResults = data.data
-      .slice(
-        TOTAL_POKEMON_REAL - LIMIT * (currentPage + 1),
-        TOTAL_POKEMON_REAL - LIMIT * currentPage
+    const start = TOTAL_POKEMON_REAL - currentPage * LIMIT;
+    const end = Math.max(start - LIMIT, 0);
+    const ids = Array.from({ length: start - end }, (_, i) => start - i);
+
+    const reversedResults = await Promise.all(
+      ids.map((id) =>
+        fetch(`${API_URL}/${id}`)
+          .then((res) => res.json())
+          .then((data) => data.data)
       )
-      .reverse();
+    );
     reversedResults.forEach((pokemon) => {
       pokemon.name = formatPokemonName(pokemon.name);
     });
     return reversedResults;
   } catch (error) {
     console.error("Error fetching reverse Pokémon:", error);
+  } finally {
+    hideLoader();
   }
 }
 
 async function fetchPokemon(limit = LIMIT, offset = 0) {
+  showLoader();
   try {
     const response = await fetch(`${API_URL}?limit=${limit}&offset=${offset}`);
     const data = await response.json();
@@ -109,6 +115,8 @@ async function fetchPokemon(limit = LIMIT, offset = 0) {
     return data.data;
   } catch (error) {
     console.error("Error fetching Pokémon:", error);
+  } finally {
+    hideLoader();
   }
 }
 
@@ -201,7 +209,6 @@ async function searchPokemon() {
   }
 
   document.getElementById("load-more-button").classList.add("hidden");
-  document.getElementById("loading-spinner").classList.remove("hidden");
   document.getElementById("pokemon-container").innerHTML = "";
 
   try {
@@ -225,15 +232,12 @@ async function searchPokemon() {
     isRandomMode = false;
     isReversedOrder = false;
     displayPokemon(filteredPokemon.slice(0, LIMIT));
-
-    document.getElementById("loading-spinner").classList.add("hidden");
   } catch (error) {
     console.error("Error searching Pokémon:", error);
   }
 }
 
 function showNoResultsMessage() {
-  document.getElementById("loading-spinner").classList.add("hidden");
   document.getElementById("pokemon-controls").classList.add("hidden");
 
   const noResultsMessage = document.getElementById("no-results-message");
@@ -291,6 +295,7 @@ async function loadRandomPokemon() {
     }
   }
 
+  showLoader();
   const pokemonDetails = await Promise.all(
     randomNumbers.map((num) =>
       fetch(`${API_URL}/${num}`)
@@ -298,12 +303,12 @@ async function loadRandomPokemon() {
         .then((data) => data.data)
     )
   );
+  hideLoader();
 
   pokemonDetails.forEach((pokemon) => {
     pokemon.name = formatPokemonName(pokemon.name);
   });
 
-  document.getElementById("loading-spinner").classList.add("hidden");
   filteredPokemon = [];
   displayPokemon(pokemonDetails);
 }
@@ -341,7 +346,6 @@ randomBtn.addEventListener("click", () => {
   isRandomMode = true;
   document.getElementById("pokemon-container").innerHTML = "";
   document.getElementById("load-more-button").classList.add("hidden");
-  document.getElementById("loading-spinner").classList.remove("hidden");
   loadRandomPokemon();
 });
 
@@ -368,6 +372,16 @@ searchInput.addEventListener("keydown", function (e) {
 searchInput.addEventListener("input", function () {
   clearBtn.style.display = this.value ? "block" : "none";
 });
+
+function showLoader() {
+  const loader = document.querySelector(".loader");
+  loader.classList.remove("hidden");
+}
+
+function hideLoader() {
+  const loader = document.querySelector(".loader");
+  loader.classList.add("hidden");
+}
 
 (async () => {
   const pokemonList = await fetchPokemon();
