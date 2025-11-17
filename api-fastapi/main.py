@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from routes.games import router as games_router
 
@@ -17,6 +17,6 @@ app.add_middleware(
 app.include_router(games_router, prefix="/api")
 
 
-@app.get("/")
+@app.head("/")
 def root():
-    return "Hello World"
+    return Response(status_code=200)
