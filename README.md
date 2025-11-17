@@ -11,6 +11,9 @@
 - API Pokémon con [PokeAPI](https://pokeapi.co/) y [Express.js](https://expressjs.com/).
 - API Recetas con [Spoonacular](https://spoonacular.com/food-api) y [NestJS](https://nestjs.com/).
 - API Videojuegos con [RAWG](https://api.rawg.io/docs/) y [FastAPI](https://fastapi.tiangolo.com/).
+- Bases de datos con [SQLite](https://sqlite.org/).
+- Despliegue de servicios en [Render](https://render.com/).
+- Monitoreo con [UptimeRobot](https://uptimerobot.com/).
 
 Información de APIs públicas en este enlace: https://github.com/public-apis/public-apis.
 
@@ -18,9 +21,7 @@ Para las bases de datos se usó [SQLite](https://sqlite.org/) por su facilidad d
 
 ## Instalación y ejecución
 
-Las 3 APIs están desplegadas en [Render](https://render.com/), por lo que hay necesidad de descargar ni configurar nada. Solo se debe descargar la APK y empezar a usar.
-
-> Nota: las APIs se desplegaron en Render con una cuenta gratis, por lo que al acceder a una de ellas, se puede demorar hasta en minuto en cargar inicialmente.
+Las 3 APIs están desplegadas en [Render](https://render.com/), por lo que hay necesidad de descargar ni configurar nada. Solo se debe descargar la APK y empezar a usar. Con una cuenta gratuita de Render los servicios se duermen después de 15 minutos de inactividad, por lo que se usó [UptimeRobot](https://uptimerobot.com/) para mantener los servicios despiertos.
 
 ## Documentación
 
