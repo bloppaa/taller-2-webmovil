@@ -21,7 +21,7 @@ Para las bases de datos se usó [SQLite](https://sqlite.org/) por su facilidad d
 
 ## Instalación y ejecución
 
-Las 3 APIs están desplegadas en [Render](https://render.com/), por lo que hay necesidad de descargar ni configurar nada. Solo se debe descargar la APK y empezar a usar. Con una cuenta gratuita de Render los servicios se duermen después de 15 minutos de inactividad, por lo que se usó [UptimeRobot](https://uptimerobot.com/) para mantener los servicios despiertos.
+Las 3 APIs están desplegadas en [Render](https://render.com/), por lo que hay necesidad de descargar ni configurar nada. Solo se debe descargar la APK y empezar a usar. Con una cuenta gratuita de Render los servicios se duermen después de 15 minutos de inactividad, por lo que será necesario esperar a que los servicios despierten. Se recomienda que al iniciar la aplicación, se abran las 3 APIs para despertarlas y esperar aproximadamente 1 minuto para que se puedan usar.
 
 ## Documentación
 
