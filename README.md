@@ -13,7 +13,6 @@
 - API Videojuegos con [RAWG](https://api.rawg.io/docs/) y [FastAPI](https://fastapi.tiangolo.com/).
 - Bases de datos con [SQLite](https://sqlite.org/).
 - Despliegue de servicios en [Render](https://render.com/).
-- Monitoreo con [UptimeRobot](https://uptimerobot.com/).
 
 Información de APIs públicas en este enlace: https://github.com/public-apis/public-apis.
 
